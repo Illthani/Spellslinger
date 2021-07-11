@@ -18,8 +18,7 @@ public class PlayerController : MonoBehaviour
         canMove = true;
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+        void FixedUpdate()
     {
         Movement();
 
