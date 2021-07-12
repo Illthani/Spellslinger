@@ -44,7 +44,8 @@ public class RotateToMouse : MonoBehaviour
         if (playerPlane.Raycast(ray, out hitDist))
         {
             Vector3 targetPoint = ray.GetPoint(hitDist);
-            targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
+            targetRotation = Quaternion.LookRotation(targetPoint - transform.position); 
+
             targetRotation.x = 0;
             targetRotation.z = 0;
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7f * Time.fixedDeltaTime);
