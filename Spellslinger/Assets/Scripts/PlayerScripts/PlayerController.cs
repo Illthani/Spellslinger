@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public bool canRotate = true;
     public Rigidbody rb;
     public float movementSpeed;
-    private Quaternion targetRotation;
+    public Quaternion targetRotation;
 
     void Start()
     {
@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
                 targetRotation.x = 0;
                 targetRotation.z = 0;
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7f * Time.fixedDeltaTime);
-                Debug.Log(transform.rotation);
             }
         }
     }
