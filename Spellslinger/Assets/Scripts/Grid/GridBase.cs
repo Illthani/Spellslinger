@@ -45,27 +45,51 @@ public class GridBase
         return new Vector3(x * cellSize, 0, z * cellSize);
     }
 
-    private void GetXZ(Vector3 worldPosition, out int x, out int z)
-    {
-        x = Mathf.FloorToInt(worldPosition.x / cellSize);
-        z = Mathf.FloorToInt(worldPosition.x / cellSize);
-
-    }
-
-    public void SetValue(int x, int z, int value)
+    public int GetValue(int x, int z)
     {
         if (x >= 0 && z >= 0 && x < width && z < height)
         {
-            gridArray[x, z] = value;
-            debugTextArray[x, z].text = gridArray[x, z].ToString();
+            return gridArray[x, z];
         }
+        else
+        {
+            Debug.Log($"Wrong GetValue input x: {x} z: {z}");
+            return 0;
+        }
+    }
+
+    public int GetValue(Vector3 worldPosition)
+    {
+        int x, z;
+        GetXZ(worldPosition, out x, out z);
+        return GetValue(x, z);
+    }
+
+    private void GetXZ(Vector3 worldPosition, out int x, out int z)
+    {
+        x = Mathf.FloorToInt(worldPosition.x / cellSize);
+        z = Mathf.FloorToInt(worldPosition.z / cellSize);
+
     }
 
     public void SetValue(Vector3 worldPosition, int value)
     {
         int x, z;
         GetXZ(worldPosition, out x, out z);
+        SetValue(x, z, value);
     }
+
+    public void SetValue(int x, int z, int value)
+    {
+        if (x >= 0 && z >= 0 && x < width && z < height)
+        {
+            Debug.Log("WORKS");
+            gridArray[x, z] = value;
+            debugTextArray[x, z].text = gridArray[x, z].ToString();
+        }
+    }
+
+
 
     // Create Text in the World
     public static TextMesh CreateWorldText(string text, Transform parent = null, Vector3 localPosition = default(Vector3), int fontSize = 40, 
