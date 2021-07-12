@@ -6,8 +6,8 @@ using UnityEngine;
 public class TestingGrid : MonoBehaviour
 {
     private GridBase grid;
-    [SerializeField]
-    private Camera mainCam;
+    [SerializeField] private LayerMask layerMask;
+    [SerializeField] private Camera mainCam;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,23 +19,14 @@ public class TestingGrid : MonoBehaviour
 
     void Update()
     {
-        Ray raydEEZENUTS = UnityEngine.Camera.main.ScreenPointToRay(Input.mousePosition);
-        Debug.Log(raydEEZENUTS.direction);
-        Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit raycastHit))
-        {
-            Debug.Log(transform.position);
-        }
         if (Input.GetMouseButtonDown(0))
         {
             grid.SetValue(GetMouseWorldPosition(), 56);
-            Debug.Log($"{GetMouseWorldPosition()}");
         }
 
         if (Input.GetMouseButtonDown(1))
         {
             grid.GetValue(GetMouseWorldPosition());
-            Debug.Log($"{grid.GetValue(GetMouseWorldPosition())}");
         }
     }
 
@@ -43,9 +34,14 @@ public class TestingGrid : MonoBehaviour
     // Get Mouse Position in World with Z = 0f
     public static Vector3 GetMouseWorldPosition()
     {
-        Vector3 vec = GetMouseWorldPositionWithY(Input.mousePosition, Camera.main);
-        vec.y = 0f;
-//        Debug.Log($"{vec}");
+        Vector3 vec = Vector3.zero;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue))
+        {
+            vec = new Vector3(raycastHit.point.x, 0f, raycastHit.point.z);
+        }
+        //Vector3 vec = GetMouseWorldPositionWithY(Input.mousePosition, Camera.main);
+        Debug.Log($"{vec}");
 
         return vec;
     }

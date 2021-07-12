@@ -48,7 +48,7 @@ public class CastSpell : MonoBehaviour
         {
             Vector3 direction = firePoint.transform.position - PlayerGO.transform.position;
             vfx = Instantiate(effectToSpawn, firePoint.transform.position, Quaternion.LookRotation(direction)); 
-            //vfx = Instantiate(effectToSpawn, firePoint.transform.position, Quaternion.LookRotation() )
+
         }
         
     }
