@@ -6,15 +6,26 @@ using UnityEngine;
 public class TestingGrid : MonoBehaviour
 {
     private GridBase grid;
+    [SerializeField]
+    private Camera mainCam;
     // Start is called before the first frame update
     void Start()
     {
-        grid = new GridBase(20, 10, 10f);
-            
+        grid = new GridBase(20, 10, 10f, new Vector3(5, 0, 5));
+
+
+
     }
 
     void Update()
     {
+        Ray raydEEZENUTS = UnityEngine.Camera.main.ScreenPointToRay(Input.mousePosition);
+        Debug.Log(raydEEZENUTS.direction);
+        Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit raycastHit))
+        {
+            Debug.Log(transform.position);
+        }
         if (Input.GetMouseButtonDown(0))
         {
             grid.SetValue(GetMouseWorldPosition(), 56);

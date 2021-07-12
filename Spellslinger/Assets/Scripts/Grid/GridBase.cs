@@ -7,16 +7,17 @@ public class GridBase
     private int width;
     private int height;
     private float cellSize;
+    private Vector3 originPosition;
     private int[,] gridArray;
     private TextMesh[,] debugTextArray;
     public const int sortingOrderDefault = 5000;
 
-    public GridBase(int width, int height, float cellSize)
+    public GridBase(int _width, int _height, float _cellSize, Vector3 _originPosition)
     {
-        this.width = width;
-        this.height = height;
-        this.cellSize = cellSize;
-
+        this.width = _width;
+        this.height = _height;
+        this.cellSize = _cellSize;
+        this.originPosition = _originPosition;
         gridArray = new int[width, height];
         debugTextArray = new TextMesh[width, height];
 
@@ -42,13 +43,14 @@ public class GridBase
 
     private Vector3 GetWorldPosition(int x, int z)
     {
-        return new Vector3(x * cellSize, 0, z * cellSize);
+        return new Vector3(x * cellSize, 0, z * cellSize) + originPosition;
     }
+
 
     public int GetValue(int x, int z)
     {
         if (x >= 0 && z >= 0 && x < width && z < height)
-        {
+        {   
             return gridArray[x, z];
         }
         else
@@ -67,8 +69,8 @@ public class GridBase
 
     private void GetXZ(Vector3 worldPosition, out int x, out int z)
     {
-        x = Mathf.FloorToInt(worldPosition.x / cellSize);
-        z = Mathf.FloorToInt(worldPosition.z / cellSize);
+        x = Mathf.FloorToInt((worldPosition - originPosition).x / cellSize);
+        z = Mathf.FloorToInt((worldPosition - originPosition).z / cellSize);
 
     }
 
