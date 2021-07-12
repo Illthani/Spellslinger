@@ -868,7 +868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vfxList:
-  - {fileID: 8034919847256880244, guid: 65676f82543f3ba41a3f7271308055bd, type: 3}
+  - {fileID: 2032020823835487948, guid: 4f360cb173655b44eb46d3d64f1df03f, type: 3}
   firePoint: {fileID: 462933952}
   PlayerGO: {fileID: 719694016}
 --- !u!1 &1029805684
