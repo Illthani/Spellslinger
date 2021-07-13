@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Pathfinding
-
 {
-    public Pathfinding() { }
+//    private Grid<PathNode> grid;
+
+    public Pathfinding(int width, int height)
+    {
+        
+    }   
 }
