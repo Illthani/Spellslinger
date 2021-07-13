@@ -1570,4 +1570,4 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 512
-  mainCam: {fileID: 336906704}
+  boolMapVisual: {fileID: 0}
