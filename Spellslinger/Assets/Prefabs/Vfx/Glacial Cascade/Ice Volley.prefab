@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3121773641670955004}
   - component: {fileID: 113647503183585628}
   m_Layer: 0
-  m_Name: Talyah
+  m_Name: Ice Volley
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
