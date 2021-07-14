@@ -9,7 +9,7 @@ public class TestingGrid : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private BoolMap boolMapVisual;
 
-
+    [SerializeField]
     // Start is called before the first frame update
     void Start()
     {
