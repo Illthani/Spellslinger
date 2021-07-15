@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9161820641513051343}
   - component: {fileID: 3121773641670955004}
   - component: {fileID: 113647503183585628}
-  - component: {fileID: 1865163441}
+  - component: {fileID: -7325114328912000358}
   m_Layer: 0
   m_Name: Ice Volley
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420509237760772762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.18135822, y: 2.4735036, z: -0.43189755}
+  m_LocalPosition: {x: 0.15, y: 2.48, z: -0.43189755}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -124,7 +124,7 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &1865163441
+--- !u!114 &-7325114328912000358
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,10 +137,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstSpikeSize: 2
-  otherSpikeSize: 2
-  lastIceSize: 4
   startMoving: 0
-  distanceTotalTime: 0.8
-  delayTotalTime: 1.1
+  distanceTotalTime: 1
+  delayTotalTime: 0.2
   PlayerGO: {fileID: 0}
   firePoint: {fileID: 0}

@@ -52,6 +52,8 @@ public class CastSpell : MonoBehaviour
         }
         
     }
+
+    
     
 
     public void QKeySpell()
