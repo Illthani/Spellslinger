@@ -47,7 +47,6 @@ public class EnemyAttacking : MonoBehaviour
 
     void TargetRay()
     {
-        Debug.Log("CHECK");
         RaycastHit hit;
         Physics.Raycast(gameObject.transform.position, Vector3.forward, out hit, sightingRange);
 //        Ray ray = new Ray(firePoint.transform.position, gameObject.transform.position);

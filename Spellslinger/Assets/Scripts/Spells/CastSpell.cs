@@ -36,7 +36,7 @@ public class CastSpell : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                MouseButtonSpell();
+                MouseButtonSpell(null);
             }
             else if (Input.GetKeyDown(KeyCode.Q))
             {
@@ -50,21 +50,22 @@ public class CastSpell : MonoBehaviour
         }
     }
 
-    public void MouseButtonSpell()
+    public void MouseButtonSpell(GameObject vfx)
     {
-        GameObject vfx;
-        if (firePoint != null)
+        if (vfx != null)
         {
+            if (firePoint != null)
+            {
 
-            Vector3 direction = firePoint.transform.position - PlayerGO.transform.position;
-            vfx = Instantiate(effectToSpawn, firePoint.transform.position, Quaternion.LookRotation(direction));
-            int spellVarID = Random.Range(0, spellVariationList["Fireball"].Count);
+                Vector3 direction = firePoint.transform.position - PlayerGO.transform.position;
+                vfx = Instantiate(effectToSpawn, firePoint.transform.position, Quaternion.LookRotation(direction));
+                int spellVarID = Random.Range(0, spellVariationList["Fireball"].Count);
 //            vfx.GetComponent<VariationCheck>().VariationName = "Barrage";
 
-            vfx.GetComponent<VariationCheck>().VariationName = spellVariationList["Fireball"][spellVarID];
+                vfx.GetComponent<VariationCheck>().VariationName = spellVariationList["Fireball"][spellVarID];
 //            Debug.Log(vfx.GetComponent<VariationCheck>().VariationName);
+            }
         }
-        
     }
 
     public void NovaEffect(GameObject GO, int count = 8)

@@ -16,6 +16,7 @@ public class PathNode : MonoBehaviour
     public PathNode cameFromNode;
 
     public GameObject testGO;
+
     public PathNode(GridB<PathNode> _grid, int _x, int _z, bool _isWalkable = true)
     {
         this.grid = _grid;
