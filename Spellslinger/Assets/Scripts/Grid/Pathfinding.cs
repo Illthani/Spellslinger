@@ -14,10 +14,10 @@ public class Pathfinding
     private List<PathNode> openList;
     private List<PathNode> closedList;
 
-    public Pathfinding(int width, int height)
+    public Pathfinding(int width, int height, float cellSize = 10f)
     {
-        grid = new GridB<PathNode>(width, height, 10f, Vector3.zero,
-            (GridB<PathNode> g, int x, int z) => new PathNode(g, x, z));
+        Vector3 vec = new Vector3(-50f, 0f, -50f);
+        grid = new GridB<PathNode>(width, height, 1f, vec, (GridB<PathNode> g, int x, int z) => new PathNode(g, x, z));
                 
     }
 
@@ -140,7 +140,7 @@ public class Pathfinding
         path.Reverse();
         foreach (PathNode node in path)
         {
-            Debug.Log($"x {node.x} z {node.z}"  );
+//            Debug.Log($"x {node.x} z {node.z}"  );
         }
         return path;
     }

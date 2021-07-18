@@ -31,7 +31,7 @@ public class PathNode : MonoBehaviour
 
     public override string ToString()
     {
-        return $"x: {x} | z: {z}";
+        return $"{x}|{z}";
     }
 
     public PathNode GetNode()

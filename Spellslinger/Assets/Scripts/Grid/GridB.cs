@@ -147,9 +147,11 @@ public class GridB<TGridObject>
     public static TextMesh CreateWorldText(string text, Transform parent = null, Vector3 localPosition = default(Vector3), int fontSize = 20,
         Color? color = null, TextAnchor textAnchor = TextAnchor.UpperLeft,
         TextAlignment textAlignment = TextAlignment.Left, int sortingOrder = sortingOrderDefault)
+
     {
         if (color == null) color = Color.white;
-        
+
+
         return CreateWorldText(parent, text, localPosition, fontSize, (Color)color, textAnchor, textAlignment, sortingOrder);
     }
 
@@ -166,7 +168,7 @@ public class GridB<TGridObject>
         textMesh.anchor = textAnchor;
         textMesh.alignment = textAlignment;
         textMesh.text = text;
-        textMesh.fontSize = fontSize;
+        textMesh.fontSize = 5;
         textMesh.color = Color.black;
         textMesh.GetComponent<MeshRenderer>().sortingOrder = sortingOrder;
         return textMesh;
