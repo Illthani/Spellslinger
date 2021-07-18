@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3956757192180130489}
   - component: {fileID: 3991053957534125884}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Smoke Embers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 2032020822586114056}
   - component: {fileID: 2032020822586114058}
   - component: {fileID: 2032020822586114057}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4944,7 +4944,7 @@ GameObject:
   - component: {fileID: 2032020823147231216}
   - component: {fileID: 2032020823147231218}
   - component: {fileID: 2032020823147231217}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9747,7 +9747,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2032020823835487949}
   - component: {fileID: -908678015428027200}
-  m_Layer: 0
+  - component: {fileID: -5059037096696479212}
+  - component: {fileID: -8653577219082512230}
+  - component: {fileID: -5254389882154246585}
+  m_Layer: 10
   m_Name: Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9762,7 +9765,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032020823835487948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.48336953, y: 1.1952966, z: -0.08671263}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2032020824098251734}
@@ -9791,6 +9794,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   fireRate: 0
+--- !u!114 &-5059037096696479212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032020823835487948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 595dac32f0122b34c94164856f288466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collTestPrefab: {fileID: 5866069558758299091, guid: a2ba8affc832f9a4082c4f401fa144f2, type: 3}
+  ps: {fileID: 0}
+--- !u!135 &-8653577219082512230
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032020823835487948}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-5254389882154246585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032020823835487948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6becd14f941055240b9cfdb65c9be90f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variation: 1
+  VariationID: 2
+  SpellName: Fireball
+  VariationName: 
+  collTestPrefab: {fileID: 0}
+  additionalVar: 0
 --- !u!1 &2032020824087631499
 GameObject:
   m_ObjectHideFlags: 0
@@ -9802,7 +9850,7 @@ GameObject:
   - component: {fileID: 2032020824087631500}
   - component: {fileID: 2032020824087631502}
   - component: {fileID: 2032020824087631501}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14606,7 +14654,7 @@ GameObject:
   - component: {fileID: 2032020824098251734}
   - component: {fileID: 2032020824098251720}
   - component: {fileID: 2032020824098251735}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19410,7 +19458,7 @@ GameObject:
   - component: {fileID: 2032020824136206936}
   - component: {fileID: 2032020824136206938}
   - component: {fileID: 2032020824136206937}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24213,7 +24261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 497609729780034804}
   - component: {fileID: 1328297210343852973}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fire Trail 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24342,7 +24390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 425599669414364887}
   - component: {fileID: 1872891108603064909}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fire Trail 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24471,7 +24519,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6187370056321553730}
   - component: {fileID: 6572145605541731644}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fire Trail 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

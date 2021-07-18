@@ -14,10 +14,10 @@ public class Pathfinding
     private List<PathNode> openList;
     private List<PathNode> closedList;
 
-    public Pathfinding(int width, int height)
+    public Pathfinding(int width, int height, float cellSize = 10f)
     {
-        grid = new GridB<PathNode>(width, height, 10f, Vector3.zero,
-            (GridB<PathNode> g, int x, int z) => new PathNode(g, x, z));
+        Vector3 vec = new Vector3(-50f, 0f, -50f);
+        grid = new GridB<PathNode>(width, height, 1f, vec, (GridB<PathNode> g, int x, int z) => new PathNode(g, x, z));
                 
     }
 
@@ -140,17 +140,19 @@ public class Pathfinding
         path.Reverse();
         foreach (PathNode node in path)
         {
-            Debug.Log($"x {node.x} z {node.z}"  );
+//            Debug.Log($"x {node.x} z {node.z}"  );
         }
         return path;
     }
 
     private int CalculateDistanceCost(PathNode a, PathNode b)
     {
+
         int xDistance = Mathf.Abs(a.x - b.x);
         int zDistance = Mathf.Abs(a.z - b.z);
         int remaining = Mathf.Abs(xDistance - zDistance);
-        return MOVE_DIAGONAL_COST * Mathf.Min(xDistance, zDistance) + MOVE_STRAIGHT_COST * remaining;   
+        return MOVE_DIAGONAL_COST * Mathf.Min(xDistance, zDistance) + MOVE_STRAIGHT_COST * remaining;  
+                    
 
     }
 

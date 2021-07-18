@@ -30,12 +30,5 @@ public class MoveProjectile : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == 6)
-        {
-            Destroy(gameObject);
-        }
-    }
 
 }
