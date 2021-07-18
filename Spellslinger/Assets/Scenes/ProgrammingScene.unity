@@ -247,6 +247,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2144158497443908910, guid: 8083c26815f213947b79ed04dc7e97fe, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2144158497443908910, guid: 8083c26815f213947b79ed04dc7e97fe, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -297,6 +301,10 @@ PrefabInstance:
     - target: {fileID: 7010962879282711071, guid: 8083c26815f213947b79ed04dc7e97fe, type: 3}
       propertyPath: m_Name
       value: ICE AGE
+      objectReference: {fileID: 0}
+    - target: {fileID: 7010962879282711071, guid: 8083c26815f213947b79ed04dc7e97fe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8083c26815f213947b79ed04dc7e97fe, type: 3}
@@ -459,6 +467,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 113647503183585628, guid: 48dea736bddf32746bc996ea037c62dd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 113647503183585628, guid: 48dea736bddf32746bc996ea037c62dd, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -521,6 +533,10 @@ PrefabInstance:
     - target: {fileID: 420509237760772762, guid: 48dea736bddf32746bc996ea037c62dd, type: 3}
       propertyPath: m_Name
       value: Ice Volley (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 420509237760772762, guid: 48dea736bddf32746bc996ea037c62dd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9161820641513051343, guid: 48dea736bddf32746bc996ea037c62dd, type: 3}
       propertyPath: m_RootOrder
@@ -752,7 +768,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8496933730303120556, guid: 0f5cba040992c3546aa989b954990140, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f5cba040992c3546aa989b954990140, type: 3}

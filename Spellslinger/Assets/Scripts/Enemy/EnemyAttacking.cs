@@ -37,13 +37,24 @@ public class EnemyAttacking : MonoBehaviour
     {
         RotateTowardsPlayer();
         MoveTowardsPlayer();
-        TargetRay();
+//        TargetRay();
+        FireAway();
+
     }
     void OnTriggerStay(Collider other)
     {
     }
 
+    void FireAway()
+    {
 
+        if (timer <= 0)
+        {
+            MouseButtonSpell();
+            timer = timerMax;
+        }
+
+    }
 
     void TargetRay()
     {
@@ -83,8 +94,8 @@ public class EnemyAttacking : MonoBehaviour
         if (firePoint != null)
         {
 
-            Vector3 direction = firePoint.transform.position - gameObject.transform.position;
-            vfx = Instantiate(effectToSpawn, firePoint.transform.position, Quaternion.LookRotation(direction));
+            Vector3 direction = Vector3.forward;
+            vfx = Instantiate(effectToSpawn, gameObject.transform.position, gameObject.transform.rotation);
 
             
         }
