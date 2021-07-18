@@ -16,7 +16,7 @@ public class Pathfinding
 
     public Pathfinding(int width, int height, float cellSize = 10f)
     {
-        Vector3 vec = new Vector3(-50f, 0f, -50f);
+        Vector3 vec = new Vector3(-30f, 0f, -40f);
         grid = new GridB<PathNode>(width, height, 1f, vec, (GridB<PathNode> g, int x, int z) => new PathNode(g, x, z));
                 
     }
