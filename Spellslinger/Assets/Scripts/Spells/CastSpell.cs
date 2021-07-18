@@ -19,9 +19,7 @@ public class CastSpell : MonoBehaviour
         int randomSpellID = Random.Range(0, vfxList.Count);
         string spellToSpawnName = vfxList[randomSpellID].name;
 
-        effectToSpawn = vfxList[0];
-        targetRotation = PlayerGO.GetComponent<PlayerController>().targetRotation;
-        FillDictionary();
+
     }
 
 
@@ -30,61 +28,97 @@ public class CastSpell : MonoBehaviour
 
     }
 
-    void Update()
-    {
-        if (canCast)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                MouseButtonSpell(null);
-            }
-            else if (Input.GetKeyDown(KeyCode.Q))
-            {
-                QKeySpell();
-            }
 
-            else if (Input.GetKeyDown(KeyCode.Space))
+    public void AttemptCast(GameObject spellVfx, string additiveName, string castType)
+    {
+        switch (castType)
+        {
+            case "FirePoint":
             {
-                SpaceSpell();
+                FirePointSpell(spellVfx, additiveName);
+                break;
+            }
+            case "PlayerCentered":
+            {
+                PlayerCenteredSpell(spellVfx, additiveName);
+                break;
+            }
+            case "MousePosition":
+            {
+                MouseButtonPosSpell(spellVfx, additiveName);
+                break;
+            }
+            case "Raycast":
+            {
+                
+                break;
+            }
+            default:
+            {
+                break;
             }
         }
     }
-
-    public void MouseButtonSpell(GameObject vfx)
+    void Update()
     {
-        if (vfx != null)
+    }
+
+    public void FirePointSpell(GameObject spellVfx, string additiveName)
+    {
+        if (spellVfx != null)
         {
             if (firePoint != null)
             {
-
+                Debug.Log("1");
                 Vector3 direction = firePoint.transform.position - PlayerGO.transform.position;
-                vfx = Instantiate(effectToSpawn, firePoint.transform.position, Quaternion.LookRotation(direction));
-                int spellVarID = Random.Range(0, spellVariationList["Fireball"].Count);
-//            vfx.GetComponent<VariationCheck>().VariationName = "Barrage";
+                Debug.Log("2");
 
-                vfx.GetComponent<VariationCheck>().VariationName = spellVariationList["Fireball"][spellVarID];
-//            Debug.Log(vfx.GetComponent<VariationCheck>().VariationName);
+                GameObject vfx = Instantiate(spellVfx, firePoint.transform.position, Quaternion.LookRotation(direction));
+                Debug.Log("3");
+
+                vfx.GetComponent<VariationCheck>().VariationName = additiveName;
+                Debug.Log("4");
+
+            }
+            else
+            {
+                Debug.Log("Object is null at FirePointSpell()");
             }
         }
     }
 
-    public void NovaEffect(GameObject GO, int count = 8)
+    public void PlayerCenteredSpell(GameObject spellVfx, string additiveName)
     {
-        for (int i = 0; i < count; i++)
+        if (spellVfx != null)
         {
-            GameObject newSpell = Instantiate(GO, GO.transform.position, Quaternion.AngleAxis(45f * i, Vector3.up));
-                //Instantiate(GO, firePoint.transform.position,
-                //Quaternion.AngleAxis(45f * i, Vector3.forward));
-                int additiveID = Random.Range(0, spellVariationList.Count);
-            newSpell.GetComponent<VariationCheck>().VariationName = "";
+                Vector3 direction = firePoint.transform.position - PlayerGO.transform.position;
+                GameObject vfx = Instantiate(spellVfx, PlayerGO.transform.position,PlayerGO.transform.rotation);
+                vfx.GetComponent<VariationCheck>().VariationName = additiveName;
+        }
+        else
+        {
+            Debug.Log("Object is null at PlayerCenteredSpell()");
         }
     }
 
-    public void MouseButtonPosSpell()
+
+
+
+
+    public void MouseButtonPosSpell(GameObject spellVfx, string additiveName)
     {
-        GameObject vfx;
-        Vector3 direction = firePoint.transform.position - PlayerGO.transform.position;
-        vfx = Instantiate(effectToSpawn, firePoint.transform.position, Quaternion.LookRotation(direction));
+        if (spellVfx != null)
+        {
+            GameObject vfx = Instantiate(spellVfx, UtilityScripts.GetMouseWorldPosition(), PlayerGO.transform.rotation);
+        }
+        else
+        {
+            Debug.Log("Object is null at MouseButtonPosSpell()");
+        }
+    }
+
+    public void RaycastSpell()
+    {
 
     }
 
@@ -104,37 +138,16 @@ public class CastSpell : MonoBehaviour
 
     }
 
-
-    public void QKeySpell()
+    public void NovaEffect(GameObject GO, int count = 8)
     {
-
+        for (int i = 0; i < count; i++)
+        {
+            GameObject newSpell = Instantiate(GO, GO.transform.position, Quaternion.AngleAxis(45f * i, Vector3.up));
+            //Instantiate(GO, firePoint.transform.position,
+            //Quaternion.AngleAxis(45f * i, Vector3.forward));
+            int additiveID = Random.Range(0, spellVariationList.Count);
+            newSpell.GetComponent<VariationCheck>().VariationName = "";
+        }
     }
-
-    public void SpaceSpell()
-    {
-
-    }
-
-
-
-    private void FillDictionary()
-    {
-        List<string> FireballDict = new List<string>();
-        FireballDict.Add("Ghost");
-        FireballDict.Add("Cone");
-        FireballDict.Add("Nest");
-        FireballDict.Add("Chain");
-        FireballDict.Add("Nova");
-        FireballDict.Add("Volley");
-        //FireballDict.Add("Barrage");
-        
-        // 1 - Ghost Fireball | 2 - Cone Fireball | 3 - Nest | 4 - Chain 
-
-
-        spellVariationList.Add("Fireball", FireballDict);
-
-        
-    }
-    
 
 }

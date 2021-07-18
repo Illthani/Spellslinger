@@ -93,9 +93,10 @@ public class SpellRotation : MonoBehaviour
     public RawImage spellRawImageBasic;
     public RawImage spellRawImageUtility;
     public RawImage spellRawImageUltimate;
+    public List<RawImage> cooldownsRawImages;
 
     private float spellTimer;
-    private float spellTimerMax = 1f;
+    [SerializeField] private float spellTimerMax = 1f;
 
     private string currentBasicSpell;
     private string currentUtilitySpell;
@@ -104,9 +105,6 @@ public class SpellRotation : MonoBehaviour
 
     void Start()
     {
-//        VisualCooldown(additiveRawImageBasic, 5f);
-
-//        TestImage.CrossFadeAlpha(0f, 10f, false);
         spellTimer = spellTimerMax;
         AllSpellList();
 
@@ -135,11 +133,27 @@ public class SpellRotation : MonoBehaviour
         {
             if (spellTimer <= 0f)
             {
-
+                CastSpell(BasicSpells[currentBasicSpell], currentBasicSpell, BasicAdditiveEffectID);
                 RotateAllSpells();
-                CastSpell(BasicSpells[currentBasicSpell], currentBasicSpell, BasicAdditiveEffectID, additiveRawImageBasic, spellRawImageBasic);
-                CastSpell(UtilitySpells[currentUtilitySpell], currentUtilitySpell, UtilityAdditiveEffectID, additiveRawImageUtility, spellRawImageUtility);
-                CastSpell(UltimateSpells[currentUltimateSpell], currentUltimateSpell, UltimateAdditiveEffectID, additiveRawImageUltimate, spellRawImageUltimate);
+                spellTimer = spellTimerMax;
+            }
+        }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            if (spellTimer <= 0f)
+            {
+                CastSpell(UltimateSpells[currentUltimateSpell], currentUltimateSpell, UltimateAdditiveEffectID);
+                RotateAllSpells();
+                spellTimer = spellTimerMax;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (spellTimer <= 0f)
+            {
+                CastSpell(UtilitySpells[currentUtilitySpell], currentUtilitySpell, UtilityAdditiveEffectID);
+                RotateAllSpells();
+                spellTimer = spellTimerMax;
             }
         }
 
@@ -154,27 +168,46 @@ public class SpellRotation : MonoBehaviour
 
     private void RotateAllSpells()
     {
-        RotateOneSpell(BasicSpells, BasicSpellNames, ref basicPreviousSpell, out currentBasicSpell, out BasicAdditiveEffectID);
-        RotateOneSpell(UtilitySpells, UtilitySpellNames, ref utilityPreviousSpell, out currentUtilitySpell, out UtilityAdditiveEffectID);
-        RotateOneSpell(UltimateSpells, UltimateSpellNames, ref ultimatePreviousSpell, out currentUltimateSpell, out UltimateAdditiveEffectID);
-    }
-    private void CastSpell(SpellEffect spellEffect, string spellName, int additiveID, RawImage additiveRawImage, RawImage spellRawImage)
-    {
-        Debug.Log($"Name: {spellName} | Additive Effect {spellEffect.SpellAdditiveEffect[additiveID]} | Effect ID: {additiveID}");
+        RotateOneSpell(BasicSpells, BasicSpellNames, additiveRawImageBasic, spellRawImageBasic, ref basicPreviousSpell, out currentBasicSpell, out BasicAdditiveEffectID);
+        RotateOneSpell(UtilitySpells, UtilitySpellNames, additiveRawImageUtility, spellRawImageUtility, ref utilityPreviousSpell, out currentUtilitySpell, out UtilityAdditiveEffectID);
+        RotateOneSpell(UltimateSpells, UltimateSpellNames, additiveRawImageUltimate, spellRawImageUltimate, ref ultimatePreviousSpell, out currentUltimateSpell, out UltimateAdditiveEffectID);
 
-        additiveRawImage.texture = AdditiveEffectTextures[spellEffect.SpellAdditiveEffect[additiveID]];
-        spellRawImage.texture = SpellTextures[spellName];
         VisualCooldownAll(0f, 0.2f);
+        foreach (RawImage image in cooldownsRawImages)
+        {
+            image.CrossFadeAlpha(0f, 0f, false);
+        }
+
+        Invoke("RawImageCooldownUp", 1f);
         VisualCooldownAll(1f, 1f);
 
 
+
+    }
+    private void CastSpell(SpellEffect spellEffect, string spellName, int additiveID)
+    {
+        Debug.Log($"Name: {spellName} | Additive Effect {spellEffect.SpellAdditiveEffect[additiveID]} | Effect ID: {additiveID}");
+        string additiveEffect = spellEffect.SpellAdditiveEffect[additiveID];
+        gameObject.GetComponent<CastSpell>().AttemptCast(spellEffect.Vfx, additiveEffect, spellEffect.CastType);
     }
 
-    private void RotateOneSpell(Dictionary<string, SpellEffect>  Spells, List<string> SpellNames, ref string previousSpell, out string currentSpell, out int additiveEffectID)
+    private void RawImageCooldownUp()
+    {
+        foreach (RawImage image in cooldownsRawImages)
+        {
+            image.CrossFadeAlpha(1f, 0f, false);
+        }
+    }
+
+    private void RotateOneSpell(Dictionary<string, SpellEffect>  Spells, List<string> SpellNames, RawImage additiveRawImage, RawImage spellRawImage, ref string previousSpell, out string currentSpell, out int additiveEffectID)
     {
         SpellEffect spellEffect = RollSpellTable(Spells, SpellNames, previousSpell, out currentSpell);
         additiveEffectID = SpellAdditiveID(spellEffect);
         previousSpell = currentSpell;
+
+        additiveRawImage.texture = AdditiveEffectTextures[spellEffect.SpellAdditiveEffect[additiveEffectID]];
+        spellRawImage.texture = SpellTextures[currentSpell];
+
     }
 
     private SpellEffect RollSpellTable(Dictionary<string, SpellEffect> spellEffects, List<string> spellNames,
