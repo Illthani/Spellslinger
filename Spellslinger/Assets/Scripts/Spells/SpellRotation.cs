@@ -15,6 +15,7 @@ public class SpellRotation : MonoBehaviour
     private List<string> UltimateSpellNames;
     private List<string> UtilitySpellNames;
     private Dictionary<string, Texture> AdditiveEffectTextures;
+    private Dictionary<string, Texture> SpellTextures;
 
     private SpellEffect basicSpellEffect;
     private SpellEffect utilitySpellEffect;
@@ -28,8 +29,10 @@ public class SpellRotation : MonoBehaviour
     private string utilityPreviousSpell;
     private string ultimatePreviousSpell;
 
-    [Header("Referrence GameObjects")]
-    public GameObject AdditiveTextureCanvas;
+//    [Header("Referrence GameObjects")]
+//    public GameObject AdditiveTextureCanvas;
+
+    public Texture transperentTexture;
 
     [Header("Additive Textures")]
     public Texture bounceTexture;
@@ -66,7 +69,6 @@ public class SpellRotation : MonoBehaviour
     public Texture magicMissilesTexture;
     public Texture infiniteFireballTexture;
     public Texture conduitsTexture;
-
     [Header("Vfx")]
     public GameObject fireballVfx; 
     public GameObject iceVolleyVfx;
@@ -84,8 +86,13 @@ public class SpellRotation : MonoBehaviour
     public GameObject magicMissilesVfx;
     public GameObject infiniteFireballVfx;
     public GameObject conduitsVfx;
-
-    private RawImage additiveTexture;
+    [Header("RawImageSlots")]
+    public RawImage additiveRawImageBasic;
+    public RawImage additiveRawImageUtility;
+    public RawImage additiveRawImageUltimate;
+    public RawImage spellRawImageBasic;
+    public RawImage spellRawImageUtility;
+    public RawImage spellRawImageUltimate;
 
     private float spellTimer;
     private float spellTimerMax = 1f;
@@ -94,10 +101,12 @@ public class SpellRotation : MonoBehaviour
     private string currentUtilitySpell;
     private string currentUltimateSpell;
 
+
     void Start()
     {
-        additiveTexture = AdditiveTextureCanvas.GetComponent<RawImage>();
+//        VisualCooldown(additiveRawImageBasic, 5f);
 
+//        TestImage.CrossFadeAlpha(0f, 10f, false);
         spellTimer = spellTimerMax;
         AllSpellList();
 
@@ -105,7 +114,6 @@ public class SpellRotation : MonoBehaviour
 
     private void AllSpellList()
     {
-
         BasicSpells = BasicSpellList();
         UltimateSpells = UltimateSpellList();
         UtilitySpells = UtilitySpellList();
@@ -115,7 +123,8 @@ public class SpellRotation : MonoBehaviour
         UltimateSpellNames = UltimateSpellNameList();
 
         AdditiveEffectTextures = AdditiveTexturesFillDict();
-        Debug.Log("Hey");
+        SpellTextures = SpellTexturesFillDict();
+
         RotateAllSpells();
     }
 
@@ -126,16 +135,21 @@ public class SpellRotation : MonoBehaviour
         {
             if (spellTimer <= 0f)
             {
-                Debug.Log("Maximus Supremus0");
 
                 RotateAllSpells();
-                Debug.Log("Maximus Supremus");
-                CastSpell(BasicSpells[currentBasicSpell], currentBasicSpell, BasicAdditiveEffectID);
-                CastSpell(UtilitySpells[currentUtilitySpell], currentUtilitySpell, UtilityAdditiveEffectID);
-                CastSpell(UltimateSpells[currentUltimateSpell], currentUltimateSpell, UltimateAdditiveEffectID);
+                CastSpell(BasicSpells[currentBasicSpell], currentBasicSpell, BasicAdditiveEffectID, additiveRawImageBasic, spellRawImageBasic);
+                CastSpell(UtilitySpells[currentUtilitySpell], currentUtilitySpell, UtilityAdditiveEffectID, additiveRawImageUtility, spellRawImageUtility);
+                CastSpell(UltimateSpells[currentUltimateSpell], currentUltimateSpell, UltimateAdditiveEffectID, additiveRawImageUltimate, spellRawImageUltimate);
             }
         }
 
+    }
+
+    private void VisualCooldownAll(float cooldown, float alphaValue)
+    {
+        spellRawImageBasic.CrossFadeAlpha(alphaValue, cooldown, false);
+        spellRawImageUtility.CrossFadeAlpha(alphaValue, cooldown, false);
+        spellRawImageUltimate.CrossFadeAlpha(alphaValue, cooldown, false);
     }
 
     private void RotateAllSpells()
@@ -144,13 +158,16 @@ public class SpellRotation : MonoBehaviour
         RotateOneSpell(UtilitySpells, UtilitySpellNames, ref utilityPreviousSpell, out currentUtilitySpell, out UtilityAdditiveEffectID);
         RotateOneSpell(UltimateSpells, UltimateSpellNames, ref ultimatePreviousSpell, out currentUltimateSpell, out UltimateAdditiveEffectID);
     }
-    private void CastSpell(SpellEffect spellEffect, string spellName, int additiveID)
+    private void CastSpell(SpellEffect spellEffect, string spellName, int additiveID, RawImage additiveRawImage, RawImage spellRawImage)
     {
-        Debug.Log("Hey there, rock star");
         Debug.Log($"Name: {spellName} | Additive Effect {spellEffect.SpellAdditiveEffect[additiveID]} | Effect ID: {additiveID}");
-        
-        AdditiveTextureCanvas.GetComponent<RawImage>().texture = AdditiveEffectTextures[spellEffect.SpellAdditiveEffect[additiveID]];
-        additiveTexture.texture = AdditiveEffectTextures[spellEffect.SpellAdditiveEffect[additiveID]];
+
+        additiveRawImage.texture = AdditiveEffectTextures[spellEffect.SpellAdditiveEffect[additiveID]];
+        spellRawImage.texture = SpellTextures[spellName];
+        VisualCooldownAll(0f, 0.2f);
+        VisualCooldownAll(1f, 1f);
+
+
     }
 
     private void RotateOneSpell(Dictionary<string, SpellEffect>  Spells, List<string> SpellNames, ref string previousSpell, out string currentSpell, out int additiveEffectID)
@@ -381,12 +398,35 @@ public class SpellRotation : MonoBehaviour
         AdditiveEffectTextures.Add("Volley", volleyTexture);
         AdditiveEffectTextures.Add("Width", widthTexture);
         AdditiveEffectTextures.Add("Fireball", fireballTexture);
-        AdditiveEffectTextures.Add("", null);
+        AdditiveEffectTextures.Add("", transperentTexture);
         return AdditiveEffectTextures;
     }
+    public Dictionary<string, Texture> SpellTexturesFillDict()
+    {
+        Dictionary<string, Texture> AdditiveEffectTextures = new Dictionary<string, Texture>();
+        AdditiveEffectTextures.Add("Fireball", fireballTexture);
+        AdditiveEffectTextures.Add("IceVolley", iceVolleyTexture);
+        AdditiveEffectTextures.Add("Blackhole", blackholeTexture);
+        AdditiveEffectTextures.Add("ChainLightning", chainLightningTexture);
+        AdditiveEffectTextures.Add("IceCage", iceCageTexture);
+        AdditiveEffectTextures.Add("IceAge", iceAgeTexture);
+        AdditiveEffectTextures.Add("WindTunnel", windTunnelTexture);
+        AdditiveEffectTextures.Add("Hurricane", hurricaneTexture);
+        AdditiveEffectTextures.Add("SwirlingNova", swirlingNovaTexture);
+        AdditiveEffectTextures.Add("StormEye", stormEyeTexture);
+        AdditiveEffectTextures.Add("GlacialCascade", glacialCascadeTexture);
+        AdditiveEffectTextures.Add("FlameDash", flameDashTexture);
+        AdditiveEffectTextures.Add("Transpose", transposeTexture);
+        AdditiveEffectTextures.Add("MagicMissiles", magicMissilesTexture);
+        AdditiveEffectTextures.Add("InfiniteFireball", infiniteFireballTexture);
+        AdditiveEffectTextures.Add("Conduits", conduitsTexture);
+        AdditiveEffectTextures.Add("", transperentTexture);
+        return AdditiveEffectTextures;
+    }
+
     public class SpellEffect
     {
-        public string Name { get; private set; }
+//        public string Name { get; private set; }
         public GameObject Vfx { get; private set; }
         public List<string> SpellAdditiveEffect { get; private set; }
         public Texture SpellPicture { get; private set; }
