@@ -8,7 +8,7 @@ public class PathfindTest : MonoBehaviour
     public GameObject test;
     private void Start()
     {
-        pathfinding = new Pathfinding(56, 64);
+        pathfinding = new Pathfinding(56, 54);
         for (int i = 0; i < pathfinding.GetGrid().GetWidth(); i++)
         {
             for (int j = 0; j < pathfinding.GetGrid().GetHeight(); j++)
