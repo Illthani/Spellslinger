@@ -53,7 +53,7 @@ public class EnemyAttacking : MonoBehaviour
 //        bool hit = Physics.Raycast(gameObject.transform.position, PlayerGO.transform.position, 15f);
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider);
+//            Debug.Log(hit.collider);
 
             if (hit.collider.gameObject.CompareTag("Player"))
             {
