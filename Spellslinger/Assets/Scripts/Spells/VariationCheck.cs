@@ -11,6 +11,8 @@ public class VariationCheck : MonoBehaviour
     public string SpellName;
     public string VariationName;
     public GameObject collTestPrefab;
+    public GameObject PlayerGO;
+    public GameObject targetGO;
     public int additionalVar;
 
 

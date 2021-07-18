@@ -1,32 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class CastSpell : MonoBehaviour
 {
-    public List<GameObject> vfxList = new List<GameObject>();
     public GameObject firePoint;
     public GameObject PlayerGO;
-    public Dictionary<string, List<string>> spellVariationList = new Dictionary<string, List<string>>();
-    public bool canCast = true;
-
-    private GameObject effectToSpawn;
-    private Quaternion targetRotation;
-
-
-    void Start()
-    {
-        int randomSpellID = Random.Range(0, vfxList.Count);
-        string spellToSpawnName = vfxList[randomSpellID].name;
-
-
-    }
-
-
-    private void SpellList()
-    {
-
-    }
+    private Vector3 spawnPosAdjustment = Vector3.up * 0.5f;
 
 
     public void AttemptCast(GameObject spellVfx, string additiveName, string castType)
@@ -73,7 +54,7 @@ public class CastSpell : MonoBehaviour
                 Vector3 direction = firePoint.transform.position - PlayerGO.transform.position;
                 Debug.Log("2");
 
-                GameObject vfx = Instantiate(spellVfx, firePoint.transform.position, Quaternion.LookRotation(direction));
+                GameObject vfx = Instantiate(spellVfx, firePoint.transform.position + spawnPosAdjustment, Quaternion.LookRotation(direction));
                 Debug.Log("3");
 
                 vfx.GetComponent<VariationCheck>().VariationName = additiveName;
@@ -92,7 +73,7 @@ public class CastSpell : MonoBehaviour
         if (spellVfx != null)
         {
                 Vector3 direction = firePoint.transform.position - PlayerGO.transform.position;
-                GameObject vfx = Instantiate(spellVfx, PlayerGO.transform.position,PlayerGO.transform.rotation);
+                GameObject vfx = Instantiate(spellVfx, PlayerGO.transform.position + spawnPosAdjustment,PlayerGO.transform.rotation);
                 vfx.GetComponent<VariationCheck>().VariationName = additiveName;
         }
         else
@@ -109,7 +90,9 @@ public class CastSpell : MonoBehaviour
     {
         if (spellVfx != null)
         {
-            GameObject vfx = Instantiate(spellVfx, UtilityScripts.GetMouseWorldPosition(), PlayerGO.transform.rotation);
+            Vector3 spawnVector = UtilityScripts.GetMouseWorldPosition();
+            spawnVector.y += 0.1f;
+            GameObject vfx = Instantiate(spellVfx, UtilityScripts.GetMouseWorldPosition() + spawnPosAdjustment, PlayerGO.transform.rotation);
         }
         else
         {
@@ -117,10 +100,21 @@ public class CastSpell : MonoBehaviour
         }
     }
 
-    public void RaycastSpell()
+    public void RaycastSpell(GameObject spellVfx, string additiveName)
     {
+        RaycastHit hit;
+        Physics.Raycast(PlayerGO.transform.position, (UtilityScripts.GetMouseWorldPosition() - PlayerGO.transform.position) + spawnPosAdjustment, out hit, 20f, 11);
+        if (hit.collider.gameObject.layer == 7)
+        {
+            GameObject spell = Instantiate(spellVfx, hit.collider.gameObject.transform.position, Quaternion.identity);
+            spell.GetComponent<VariationCheck>().VariationName = additiveName;
+            spell.GetComponent<VariationCheck>().PlayerGO = PlayerGO;
+            spell.GetComponent<VariationCheck>().targetGO = hit.collider.gameObject;
+        }
 
     }
+
+
 
     public void MouseButtonSpellCone(GameObject GO, int count, float step = 0.1f)
     {
@@ -129,7 +123,7 @@ public class CastSpell : MonoBehaviour
             Vector3 direction = firePoint.transform.position - PlayerGO.transform.position;
             for (int i = -count; i <= count; i++)
             {
-                GameObject newSpell = Instantiate(effectToSpawn, firePoint.transform.position,
+                GameObject newSpell = Instantiate(GO, firePoint.transform.position,
                     Quaternion.LookRotation(new Vector3(direction.x + i * 0.1f, 0f, direction.z + i * 0.1f)));
                 
                 newSpell.GetComponent<VariationCheck>().VariationName = "";
@@ -145,7 +139,7 @@ public class CastSpell : MonoBehaviour
             GameObject newSpell = Instantiate(GO, GO.transform.position, Quaternion.AngleAxis(45f * i, Vector3.up));
             //Instantiate(GO, firePoint.transform.position,
             //Quaternion.AngleAxis(45f * i, Vector3.forward));
-            int additiveID = Random.Range(0, spellVariationList.Count);
+//            int additiveID = Random.Range(0, spellVariationList.Count);
             newSpell.GetComponent<VariationCheck>().VariationName = "";
         }
     }
