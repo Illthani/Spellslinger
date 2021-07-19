@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyAttacking : MonoBehaviour
 {
     public GameObject PlayerGO;
-    public GameObject firePoint;
+//    public GameObject firePoint;
     [SerializeField] private float rotateSpeed = 0f;
     [SerializeField] private float movementSpeed = 3f;
     [SerializeField] private float sightingRange = 15f;
@@ -91,13 +91,18 @@ public class EnemyAttacking : MonoBehaviour
     private void MouseButtonSpell()
     {
         GameObject vfx;
-        if (firePoint != null)
-        {
+//        if (firePoint != null)
+        
 
             Vector3 direction = Vector3.forward;
             vfx = Instantiate(effectToSpawn, gameObject.transform.position, gameObject.transform.rotation);
 
             
-        }
+        
+    }
+
+    public void IDied()
+    {
+        Destroy(gameObject);
     }
 }

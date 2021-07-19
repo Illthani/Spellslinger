@@ -126,7 +126,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerGO: {fileID: 0}
-  firePoint: {fileID: 0}
   rotateSpeed: 3
   movementSpeed: 3
   sightingRange: 15
@@ -135,4 +134,4 @@ MonoBehaviour:
     m_Bits: 0
   effectToSpawn: {fileID: 3889567912883034838, guid: d0c3d3bdc1775c448b0aa86ef0feef04, type: 3}
   timer: 0
-  timerMax: 0.5
+  timerMax: 1

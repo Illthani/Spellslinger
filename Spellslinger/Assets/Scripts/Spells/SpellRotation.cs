@@ -307,7 +307,7 @@ public class SpellRotation : MonoBehaviour
         WindTunnelList.Add("Length");
         WindTunnelList.Add("PSpeed");
         WindTunnelList.Add("");
-        SpellEffect windTunnel = new SpellEffect(windTunnelVfx, WindTunnelList, windTunnelTexture, "FirePoint");
+        SpellEffect windTunnel = new SpellEffect(windTunnelVfx, WindTunnelList, windTunnelTexture, "PlayerCentered");
         utilitySpellDict.Add("WindTunnel", windTunnel);
 
         List<string> HurricaneList = new List<string>();

@@ -50,16 +50,9 @@ public class CastSpell : MonoBehaviour
         {
             if (firePoint != null)
             {
-                Debug.Log("1");
                 Vector3 direction = firePoint.transform.position - PlayerGO.transform.position;
-                Debug.Log("2");
-
                 GameObject vfx = Instantiate(spellVfx, firePoint.transform.position + spawnPosAdjustment, Quaternion.LookRotation(direction));
-                Debug.Log("3");
-
                 vfx.GetComponent<VariationCheck>().VariationName = additiveName;
-                Debug.Log("4");
-
             }
             else
             {
@@ -73,7 +66,7 @@ public class CastSpell : MonoBehaviour
         if (spellVfx != null)
         {
                 Vector3 direction = firePoint.transform.position - PlayerGO.transform.position;
-                GameObject vfx = Instantiate(spellVfx, PlayerGO.transform.position + spawnPosAdjustment,PlayerGO.transform.rotation);
+                GameObject vfx = Instantiate(spellVfx, PlayerGO.transform.position + spawnPosAdjustment, PlayerGO.transform.rotation);
                 vfx.GetComponent<VariationCheck>().VariationName = additiveName;
         }
         else
@@ -123,8 +116,10 @@ public class CastSpell : MonoBehaviour
             Vector3 direction = firePoint.transform.position - PlayerGO.transform.position;
             for (int i = -count; i <= count; i++)
             {
-                GameObject newSpell = Instantiate(GO, firePoint.transform.position,
-                    Quaternion.LookRotation(new Vector3(direction.x + i * 0.1f, 0f, direction.z + i * 0.1f)));
+                Vector3 spawnPos = new Vector3(firePoint.transform.position.x, 0.2f, firePoint.transform.position.z);
+                
+                GameObject newSpell = Instantiate(GO, spawnPos, Quaternion.LookRotation(new Vector3(direction.x + i * step, 0f, direction.z + i * step)));
+
                 
                 newSpell.GetComponent<VariationCheck>().VariationName = "";
             }

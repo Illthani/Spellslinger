@@ -60,7 +60,7 @@ public class AdditiveEffects : MonoBehaviour
         Destroy(GO);
     }
 
-    public static void VolleyEffect(GameObject GO, int count = 5)
+    public static void VolleyEffect(GameObject GO, float timerStep, int count = 5)
     {
        
     }

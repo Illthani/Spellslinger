@@ -83,5 +83,12 @@ public class IceVolleyScript : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 7) 
+        {
+            other.gameObject.GetComponent<EnemyAttacking>().IDied();
+        }
+    }
 
 }

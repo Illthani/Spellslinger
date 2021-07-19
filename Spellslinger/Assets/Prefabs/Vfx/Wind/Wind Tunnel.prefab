@@ -33689,6 +33689,8 @@ MonoBehaviour:
   SpellName: 
   VariationName: WindTunnel
   collTestPrefab: {fileID: 0}
+  PlayerGO: {fileID: 0}
+  targetGO: {fileID: 0}
   additionalVar: 0
 --- !u!1 &3263913919577383371
 GameObject:
