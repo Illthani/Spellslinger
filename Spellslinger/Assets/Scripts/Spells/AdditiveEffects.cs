@@ -60,9 +60,19 @@ public class AdditiveEffects : MonoBehaviour
         Destroy(GO);
     }
 
+    public static void Kill(GameObject GO, float timeDelay = 0f)
+    {
+        Destroy(GO, timeDelay);
+    }
+
     public static void VolleyEffect(GameObject GO, float timerStep, int count = 5)
     {
        
+    }
+
+    public static void PlayerSpeed(GameObject PlayerGO, float speedChange)
+    {
+//        GetComponent<PlayerController>
     }
 
 

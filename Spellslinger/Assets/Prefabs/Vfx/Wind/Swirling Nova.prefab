@@ -62720,6 +62720,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3802959687664890958}
   - component: {fileID: 102606018502863885}
+  - component: {fileID: 2615381810780999594}
+  - component: {fileID: 4099953069116318751}
+  - component: {fileID: 6713598055330668697}
   m_Layer: 0
   m_Name: Swirling Nova
   m_TagString: Untagged
@@ -62776,7 +62779,48 @@ MonoBehaviour:
   SpellName: SwirlingNova
   VariationName: 
   collTestPrefab: {fileID: 0}
+  PlayerGO: {fileID: 0}
+  targetGO: {fileID: 0}
   additionalVar: 0
+--- !u!114 &2615381810780999594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7412792746694062266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a164182812e3b74189780bb0931aa78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  fireRate: 0
+--- !u!114 &4099953069116318751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7412792746694062266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4246b20b5acb4054ab7208af80077f90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &6713598055330668697
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7412792746694062266}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7449336213832950675
 GameObject:
   m_ObjectHideFlags: 0

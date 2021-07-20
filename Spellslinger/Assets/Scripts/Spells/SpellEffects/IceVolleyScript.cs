@@ -19,6 +19,8 @@ public class IceVolleyScript : MonoBehaviour
 
     void Start()
     {
+
+
         CreateMoreBoxes();
         firstSpikeGO = new GameObject("spikeCollider");
         firstSpikeGO.transform.rotation = Quaternion.LookRotation(direction);
@@ -38,8 +40,8 @@ public class IceVolleyScript : MonoBehaviour
     {
         if (!createdMoreBoxes)
         {
-            Variation1();
-
+            if (gameObject.GetComponent<VariationCheck>().SpellName == "Size")
+            { SizeVariation(); }
             createdMoreBoxes = true;
             firePoint = GameObject.Find("FirePoint");
             PlayerGO = GameObject.Find("Player");
@@ -76,7 +78,7 @@ public class IceVolleyScript : MonoBehaviour
 
     }
 
-    private void Variation1()
+    private void SizeVariation()
     {
         sizeMod = 2f;
         gameObject.transform.localScale *= 2;

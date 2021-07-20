@@ -54,6 +54,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    private void PlayerSpeedChange(float speedChange, float duration, bool itCasted = true)
+    {
+       // movementSpeed += speedChange;
+
+    }
     void Update()
     {
 

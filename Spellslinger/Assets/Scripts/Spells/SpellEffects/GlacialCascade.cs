@@ -21,7 +21,7 @@ public class GlacialCascade : MonoBehaviour
             case "Size":
             {
                 Vector3 scale = new Vector3(1f, 0.5f, 1f);
-
+                
                 Vector3 collScale = new Vector3(0.8f, 0.5f, 0.5f);
                 gameObject.transform.localScale = 2 * scale;
                 
@@ -29,9 +29,7 @@ public class GlacialCascade : MonoBehaviour
                 {
                     Vector3 boxScale = new Vector3(collider.size.x * 0.8f, collider.size.y, collider.size.y);
                     collider.size = boxScale;
-//                    collider.size.Scale(collScale);
                 }
-        
                 break;
             }
             case "Volley":

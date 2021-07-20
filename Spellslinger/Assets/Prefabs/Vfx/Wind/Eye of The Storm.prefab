@@ -33764,6 +33764,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3984233544058101850}
   - component: {fileID: 6193006652697587836}
+  - component: {fileID: 1262770728977312489}
+  - component: {fileID: 8344312291467834669}
   m_Layer: 0
   m_Name: Eye of The Storm
   m_TagString: Untagged
@@ -33810,7 +33812,34 @@ MonoBehaviour:
   SpellName: StormEye
   VariationName: 
   collTestPrefab: {fileID: 0}
+  PlayerGO: {fileID: 0}
+  targetGO: {fileID: 0}
   additionalVar: 0
+--- !u!135 &1262770728977312489
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7301323839809037486}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8344312291467834669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7301323839809037486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 477bfc79507c3c14e9a8ec8bbfbb8468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8759627318205585799
 GameObject:
   m_ObjectHideFlags: 0

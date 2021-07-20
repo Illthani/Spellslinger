@@ -40,9 +40,6 @@ public class CastSpell : MonoBehaviour
             }
         }
     }
-    void Update()
-    {
-    }
 
     public void FirePointSpell(GameObject spellVfx, string additiveName)
     {
@@ -74,11 +71,6 @@ public class CastSpell : MonoBehaviour
             Debug.Log("Object is null at PlayerCenteredSpell()");
         }
     }
-
-
-
-
-
     public void MouseButtonPosSpell(GameObject spellVfx, string additiveName)
     {
         if (spellVfx != null)

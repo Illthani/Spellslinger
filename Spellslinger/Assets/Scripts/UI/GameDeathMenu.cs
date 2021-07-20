@@ -11,9 +11,9 @@ public class GameDeathMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-//        asyncOperation = SceneManager.LoadSceneAsync(0);
+        asyncOperation = SceneManager.LoadSceneAsync(1);
 //        //Don't let the Scene activate until you allow it to
-//        asyncOperation.allowSceneActivation = false;
+        asyncOperation.allowSceneActivation = false;
     }
 
     // Update is called once per frame
@@ -24,8 +24,7 @@ public class GameDeathMenu : MonoBehaviour
 
     public void RetryButton()
     {
-        SceneManager.LoadScene(1);
-//        asyncOperation.allowSceneActivation = true;
+        asyncOperation.allowSceneActivation = true;
         CanvasField.SetActive(false);
     }
 }

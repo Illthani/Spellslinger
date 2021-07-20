@@ -20,7 +20,7 @@ public class BlackHole : MonoBehaviour
     {
         if (continueSucking)
         {
-            suckingForce += 0.0005f;
+            suckingForce += 0.001f;
         }
         else
         {
