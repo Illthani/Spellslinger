@@ -28,8 +28,7 @@ public class InfiniteFireball : MonoBehaviour
             }
             case 7:
             {
-
-                Destroy(other.gameObject);
+                other.gameObject.GetComponent<EnemyAttacking>().IDied();
                 AdditiveEffects.NestEffect(gameObject, collTestPrefab, 10f);
 
                 break;

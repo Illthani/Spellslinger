@@ -54,12 +54,6 @@ public class Fireball : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void OnTriggerEnter(Collider other)
     {
    
@@ -77,13 +71,11 @@ public class Fireball : MonoBehaviour
                 {
                     Destroy(gameObject, 0.05f);
                 }
-                Destroy(other.gameObject);
+                other.gameObject.GetComponent<EnemyAttacking>().IDied(0.05f);
                 if (variations == "Nest")
                 {
                     AdditiveEffects.NestEffect(gameObject, collTestPrefab, 10f);
                 }
-                
-                
                 break;
             }
             default:

@@ -10,6 +10,8 @@ public class IceAge : MonoBehaviour
     private float radiusSize = 5f;
     void Start()
     {
+        Destroy(gameObject, 5f);
+        Invoke("DisableCollider", 4.5f);
         Invoke("ActivateCollider", 0.5f);
         switch (gameObject.GetComponent<VariationCheck>().VariationName)
         {
@@ -49,8 +51,13 @@ public class IceAge : MonoBehaviour
     {
         if (other.gameObject.layer == 7)
         {
-            Destroy(other.gameObject, 0.5f);
+            other.gameObject.GetComponent<EnemyAttacking>().IDied(0.5f);
         }
+    }
+
+    void DisableCollider()
+    {
+        GetComponent<SphereCollider>().enabled = false;
     }
 
 

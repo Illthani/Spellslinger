@@ -32,7 +32,7 @@ public class StormEye : MonoBehaviour
 
         else if (other.gameObject.layer == 12)
         {
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<EnemyAttacking>().IDied();
         }
     }
 }

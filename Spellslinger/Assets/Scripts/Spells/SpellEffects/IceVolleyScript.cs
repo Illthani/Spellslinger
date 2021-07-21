@@ -19,7 +19,7 @@ public class IceVolleyScript : MonoBehaviour
 
     void Start()
     {
-
+        Destroy(gameObject, 8.5f);
 
         CreateMoreBoxes();
         firstSpikeGO = new GameObject("spikeCollider");
@@ -41,7 +41,10 @@ public class IceVolleyScript : MonoBehaviour
         if (!createdMoreBoxes)
         {
             if (gameObject.GetComponent<VariationCheck>().SpellName == "Size")
-            { SizeVariation(); }
+            {
+
+                SizeVariation();
+            }
             createdMoreBoxes = true;
             firePoint = GameObject.Find("FirePoint");
             PlayerGO = GameObject.Find("Player");
@@ -64,7 +67,7 @@ public class IceVolleyScript : MonoBehaviour
         BigIce.transform.parent = this.gameObject.transform;
         BigIce.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 2, this.gameObject.transform.position.z);
 
-        BoxCollider BigIceBox = BigIce.AddComponent<BoxCollider>();
+        BoxCollider BigIceBox = BigIce.AddComponent<BoxCollider>(); 
         BigIceBox.isTrigger = true;
         BigIceBox.size = new Vector3(7.5f * sizeMod, 4f * sizeMod, 7.5f * sizeMod);
         BigIce.AddComponent<MoveIceVolleyColl>();
@@ -84,13 +87,4 @@ public class IceVolleyScript : MonoBehaviour
         gameObject.transform.localScale *= 2;
 
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == 7) 
-        {
-            other.gameObject.GetComponent<EnemyAttacking>().IDied();
-        }
-    }
-
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public GameObject ScoreMaster;
     public float minSpawnCooldown;
     public float maxSpawnCooldown;
     private float spawnEnemyCooldown;
@@ -29,8 +30,9 @@ public class EnemySpawner : MonoBehaviour
 
         GameObject enemyGO = Instantiate(EnemyGOList[randEnemySelection], gameObject.transform.position, Quaternion.identity);
         enemyGO.GetComponent<EnemyAttacking>().PlayerGO = PlayerGO;
+        enemyGO.GetComponent<EnemyAttacking>().ScoreMaster = ScoreMaster;
 //        GameObject fp = enemyGO.transform.Find("FirePoint").gameObject;
-//        enemyGO.GetComponent<EnemyAttacking>().firePoint = fp;
+        //        enemyGO.GetComponent<EnemyAttacking>().firePoint = fp;
 
         GameObject spawnVfxGO = Instantiate(spawnVfx, gameObject.transform.position, Quaternion.identity);
         Destroy(spawnVfxGO, 2f);

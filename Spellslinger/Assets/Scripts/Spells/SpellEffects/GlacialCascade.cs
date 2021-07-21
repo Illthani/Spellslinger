@@ -8,6 +8,8 @@ public class GlacialCascade : MonoBehaviour
 
     void Start()
     {
+        Destroy(gameObject, 4.5f);
+        Invoke("EnableCollider", 2f);
         variation = gameObject.GetComponent<VariationCheck>().VariationName;
         Invoke("EnableCollider", 0.25f);
 //        variation = "Size";
@@ -59,7 +61,7 @@ public class GlacialCascade : MonoBehaviour
     {
         foreach (BoxCollider collider in gameObject.GetComponents<BoxCollider>())
         {
-            collider.enabled = true;
+            collider.enabled = !collider.enabled;
         }
     }
 
@@ -67,7 +69,7 @@ public class GlacialCascade : MonoBehaviour
     {
         if (other.gameObject.layer == 7)
         {
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<EnemyAttacking>().IDied();
         }
 
     }

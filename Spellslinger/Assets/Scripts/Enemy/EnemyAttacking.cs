@@ -6,6 +6,8 @@ using UnityEngine;
 public class EnemyAttacking : MonoBehaviour
 {
     public GameObject PlayerGO;
+    public GameObject ScoreMaster;
+
 //    public GameObject firePoint;
     [SerializeField] private float rotateSpeed = 0f;
     [SerializeField] private float movementSpeed = 3f;
@@ -101,8 +103,9 @@ public class EnemyAttacking : MonoBehaviour
         
     }
 
-    public void IDied()
+    public void IDied(float time = 0f)
     {
-        Destroy(gameObject);
+        ScoreMaster.GetComponent<ScoreEditor>().UpdateScore();
+        Destroy(gameObject, time);
     }
 }

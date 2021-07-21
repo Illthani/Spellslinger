@@ -66,8 +66,10 @@ public class BlackHole : MonoBehaviour
     {
         foreach (Collider col in allTrapped)
         {
-            if(col != null)
-            Destroy(col.gameObject);
+            if (col != null)
+            {
+                col.gameObject.GetComponent<EnemyAttacking>().IDied();
+            }
         }
 
         Destroy(gameObject);

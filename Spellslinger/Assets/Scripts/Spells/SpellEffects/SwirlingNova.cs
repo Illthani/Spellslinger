@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SwirlingNova : MonoBehaviour
@@ -14,17 +12,15 @@ public class SwirlingNova : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 12 || other.gameObject.layer == 7)
+        if (other.gameObject.layer == 12)
         {
             Destroy(other.gameObject);
+        }
+        else if (other.gameObject.layer == 7)
+        {
+            other.gameObject.GetComponent<EnemyAttacking>().IDied();
         }
     }
 }

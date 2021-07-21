@@ -26,4 +26,9 @@ public class LightningConducts : MonoBehaviour
             electricityConduits.Add(Instantiate(electricityConduit, mousePos, Quaternion.identity, gameObject.transform));
         }
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        other.gameObject.GetComponent<EnemyAttacking>().IDied();
+    }
 }

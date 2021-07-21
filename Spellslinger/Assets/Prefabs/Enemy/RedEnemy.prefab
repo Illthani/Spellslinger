@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7235548000334969534}
-  - component: {fileID: 7235548000334969529}
   - component: {fileID: 7235548000334969528}
   - component: {fileID: 7235548000334969531}
   - component: {fileID: 7235548000334969530}
   - component: {fileID: -1161689716363452293}
+  - component: {fileID: -233116413831077237}
   m_Layer: 7
   m_Name: RedEnemy
   m_TagString: Untagged
@@ -35,14 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7235548000334969529
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7235548000334969509}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &7235548000334969528
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -126,6 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerGO: {fileID: 0}
+  ScoreMaster: {fileID: 0}
   rotateSpeed: 3
   movementSpeed: 3
   sightingRange: 15
@@ -135,3 +128,22 @@ MonoBehaviour:
   effectToSpawn: {fileID: 3889567912883034838, guid: d0c3d3bdc1775c448b0aa86ef0feef04, type: 3}
   timer: 0
   timerMax: 1
+--- !u!95 &-233116413831077237
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7235548000334969509}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d8b4690109183ca47998660090880fbb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

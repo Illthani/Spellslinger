@@ -5,6 +5,10 @@ using UnityEngine.Experimental.GlobalIllumination;
 
 public class EnemyProjectile : MonoBehaviour
 {
+    void Start()
+    {
+        Destroy(gameObject, 15f);
+    }
     void OnTriggerEnter(Collider other)
     {
 

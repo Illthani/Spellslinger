@@ -188,7 +188,10 @@ public class SpellRotation : MonoBehaviour
     {
         Debug.Log($"Name: {spellName} | Additive Effect {spellEffect.SpellAdditiveEffect[additiveID]} | Effect ID: {additiveID}");
         string additiveEffect = spellEffect.SpellAdditiveEffect[additiveID];
-        gameObject.GetComponent<CastSpell>().AttemptCast(spellEffect.Vfx, additiveEffect, spellEffect.CastType);
+        if (spellEffect != null)
+        {
+            gameObject.GetComponent<CastSpell>().AttemptCast(spellEffect.Vfx, additiveEffect, spellEffect.CastType);
+        }
     }
 
     private void RawImageCooldownUp()
@@ -284,7 +287,7 @@ public class SpellRotation : MonoBehaviour
         MagicMissilesList.Add("Cone");
         MagicMissilesList.Add("Volley");
         MagicMissilesList.Add("Chain");
-        SpellEffect magicMissiles = new SpellEffect(magicMissilesVfx, MagicMissilesList, magicMissilesTexture, "FirePoint");
+        SpellEffect magicMissiles = new SpellEffect(magicMissilesVfx, MagicMissilesList, magicMissilesTexture, "PlayerAttached");
         basicSpellDict.Add("MagicMissiles", magicMissiles);
 
         return basicSpellDict;

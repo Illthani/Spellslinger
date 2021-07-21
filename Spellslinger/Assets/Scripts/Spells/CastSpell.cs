@@ -34,6 +34,11 @@ public class CastSpell : MonoBehaviour
                 
                 break;
             }
+            case "PlayerAttached":
+            {
+                PlayerAttachedSpell(spellVfx, additiveName);
+                break;
+            }
             default:
             {
                 break;
@@ -69,6 +74,19 @@ public class CastSpell : MonoBehaviour
         else
         {
             Debug.Log("Object is null at PlayerCenteredSpell()");
+        }
+    }
+
+    public void PlayerAttachedSpell(GameObject spellVfx, string additiveName)
+    {
+        if (spellVfx != null)
+        {
+            GameObject vfx = Instantiate(spellVfx, PlayerGO.transform.position + spawnPosAdjustment, Quaternion.identity, PlayerGO.transform);
+            vfx.GetComponent<VariationCheck>().VariationName = additiveName;
+        }
+        else
+        {
+            Debug.Log("Object is null at PlayerAttachedSpell()");
         }
     }
     public void MouseButtonPosSpell(GameObject spellVfx, string additiveName)
